@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>استمارة التسجيل – برنامج المرافقة الداعمة بعد الفقد</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf6e9;--card:#fff;--ink:#1f2a24;--green:#12372a;--gold:#c9a24a;--line:#e3d7b0;--soft:#fff6dc;--on-green:#f3e6bd;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0f1a15;--card:#17261f;--ink:#efe9d6;--green:#0b241b;--line:#34493d;--soft:#22301f;--on-green:#f3e6bd}}
+:root[data-theme="dark"]{--bg:#0f1a15;--card:#17261f;--ink:#efe9d6;--green:#0b241b;--line:#34493d;--soft:#22301f;--on-green:#f3e6bd}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Tajawal','Segoe UI',Tahoma,Arial,sans-serif;line-height:1.8;font-size:16px}
+header{background:var(--green);color:var(--on-green);padding:26px 18px 22px;text-align:center;border-bottom:5px solid var(--gold)}
+header small{color:var(--gold);letter-spacing:2px;font-size:12px;direction:ltr;display:block}
+header h1{margin:6px 0 4px;font-size:23px;color:#fff;line-height:1.5}
+header p{margin:0;font-size:14px}
+main{max-width:640px;margin:0 auto;padding:18px 16px 40px}
+h2{font-size:18px;color:var(--green);border-right:5px solid var(--gold);padding-right:10px;margin:26px 0 10px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) h2{color:var(--gold)}}
+.note{background:var(--soft);border:1px dashed var(--gold);border-radius:10px;padding:10px 14px;font-size:14px}
+label.f{display:block;margin:12px 0 4px;font-weight:700;font-size:15px}
+input[type=text],input[type=tel],input[type=email],input[type=number],select,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+textarea{min-height:80px}
+.pk{display:block;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;cursor:pointer;position:relative}
+.pk input{position:absolute;opacity:0}
+.pk:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,74,.3)}
+.pk .t{display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:800;font-size:17px;color:var(--green)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pk .t{color:var(--gold)}}
+.pk .p{background:var(--green);color:var(--on-green);border-radius:20px;padding:2px 12px;font-size:14px;white-space:nowrap}
+.pk ul{margin:8px 0 0;padding-right:20px;font-size:14px}
+.pk .tag{font-size:12px;color:#a8802a}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:14.5px}
+.chk input{margin-top:6px;width:18px;height:18px;flex:none}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:13px 18px;font-weight:800;width:100%;margin-top:14px}
+.go{background:var(--green);color:var(--on-green);border-bottom:4px solid var(--gold)}
+.alt{background:var(--card);color:var(--green);border:2px solid var(--green)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .alt{color:var(--gold);border-color:var(--gold)}}
+#out{display:none;margin-top:18px}
+#sum{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:14px}
+.err{color:#b3261e;font-size:13.5px;margin-top:6px;display:none}
+.bc{margin:30px auto 0;max-width:420px;border:3px solid var(--green);border-radius:14px;overflow:hidden;background:var(--bg);text-align:center}
+.bc .a{background:var(--green);color:var(--on-green);padding:12px;border-bottom:4px solid var(--gold)}
+.bc .a b{font-size:21px;color:#fff;display:block;direction:ltr}
+.bc .m{padding:10px;color:var(--green)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bc .m{color:var(--on-green)}}
+.bc .m b{display:block;direction:ltr;font-size:16px}
+.bc .m span{font-size:11px;letter-spacing:3px;color:#a8802a;direction:ltr;display:block}
+.bc .z{background:var(--green);color:var(--on-green);padding:9px;font-size:12.5px;direction:ltr;border-top:4px solid var(--gold)}
+footer{text-align:center;font-size:12px;opacity:.75;margin-top:18px}
+</style>
+</head>
+<body>
+<header>
+<small>MASTER MIND ACADEMY</small>
+<h1>استمارة التسجيل<br>برنامج المرافقة الداعمة بعد الفقد</h1>
+<p>8 جلسات × 75 دقيقة | مساحة آمنة، بلا أحكام وبلا ضغط</p>
+</header>
+<main>
+<div class="note">هذا البرنامج مرافقة وكوتشينغ داعم، وليس علاجاً نفسياً أو طبياً، ولا يعد بنتيجة محددة. إذا كنت في خطر مباشر أو تفكر في إيذاء نفسك، تواصل فوراً مع خدمات الطوارئ المحلية أو أقرب مستعجلات، أو مع شخص قريب منك.</div>
+
+<form id="f" novalidate>
+<h2>1. معلوماتك</h2>
+<label class="f" for="name">الاسم الكامل</label>
+<input type="text" id="name" autocomplete="name">
+<div class="row">
+<div><label class="f" for="age">العمر</label><input type="number" id="age" min="18" max="99" inputmode="numeric"></div>
+<div><label class="f" for="city">المدينة</label><input type="text" id="city"></div>
+</div>
+<div class="row">
+<div><label class="f" for="tel">رقم الهاتف / واتساب</label><input type="tel" id="tel" inputmode="tel" autocomplete="tel"></div>
+<div><label class="f" for="mail">البريد الإلكتروني (اختياري)</label><input type="email" id="mail" autocomplete="email"></div>
+</div>
+
+<h2>2. عن تجربتك (بالقدر الذي ترتاح له)</h2>
+<div class="row">
+<div><label class="f" for="who">من الشخص الذي فقدته؟</label>
+<select id="who"><option value="">اختر (اختياري)</option><option>الأم</option><option>الأب</option><option>الزوج / الزوجة</option><option>ابن / ابنة</option><option>أخ / أخت</option><option>صديق / قريب</option><option>غير ذلك</option></select></div>
+<div><label class="f" for="when">منذ متى؟</label>
+<select id="when"><option value="">اختر (اختياري)</option><option>أقل من 3 أشهر</option><option>من 3 إلى 12 شهراً</option><option>أكثر من سنة</option></select></div>
+</div>
+<label class="f" for="why">ما الذي تتمنى أن تجده في هذه المرافقة؟</label>
+<textarea id="why" placeholder="اكتب ما تريد، أو اتركه فارغاً"></textarea>
+<label class="f" for="pro">هل تتابع حالياً مع طبيب أو أخصائي نفسي؟</label>
+<select id="pro"><option value="">اختر</option><option>نعم</option><option>لا</option><option>سبق لي ذلك</option></select>
+
+<h2>3. اختر الباقة</h2>
+<label class="pk"><input type="radio" name="pk" value="باقة اللقاء الأول" data-price="250">
+<div class="t"><span>باقة اللقاء الأول</span><span class="p">250 درهم</span></div>
+<ul><li>جلسة واحدة (75 دقيقة): فهم الفقد وبناء الأمان</li><li>تحديد الاحتياجات وهل البرنامج مناسب لك</li></ul></label>
+<label class="pk"><input type="radio" name="pk" value="الباقة الأساسية" data-price="700">
+<div class="t"><span>الباقة الأساسية</span><span class="p">700 درهم</span></div>
+<ul><li>4 جلسات (الجلسات 1 إلى 4)</li><li>المشاعر، الذنب، الذكريات والمحفزات</li><li>ورقة عمل لكل جلسة</li></ul></label>
+<label class="pk"><input type="radio" name="pk" value="الباقة الكاملة" data-price="1500">
+<div class="t"><span>الباقة الكاملة <span class="tag">(الأكثر اكتمالاً)</span></span><span class="p">1500 درهم</span></div>
+<ul><li>8 جلسات كاملة، من الأمان إلى خطة الاستمرار</li><li>دفتر العميل وأوراق العمل</li><li>خطة شخصية للأيام الصعبة وشبكة الدعم</li></ul></label>
+<div class="err" id="e-pk">من فضلك اختر باقة.</div>
+
+<div class="row">
+<div><label class="f" for="fmt">طريقة الجلسات</label>
+<select id="fmt"><option>عن بعد (مكالمة فيديو)</option><option>حضوري</option><option>لا فرق عندي</option></select></div>
+<div><label class="f" for="slot">الوقت المناسب</label>
+<select id="slot"><option>صباحاً</option><option>بعد الظهر</option><option>مساءً</option><option>نهاية الأسبوع</option></select></div>
+</div>
+
+<h2>4. الموافقة</h2>
+<label class="chk"><input type="checkbox" id="c1"><span>أفهم أن الخدمة مرافقة داعمة وليست علاجاً نفسياً أو طبياً.</span></label>
+<label class="chk"><input type="checkbox" id="c2"><span>المشاركة اختيارية، ويمكنني رفض أي تمرين أو إيقاف الجلسة متى شئت.</span></label>
+<label class="chk"><input type="checkbox" id="c3"><span>أعلم أن المدرب ملتزم بالسرية ضمن حدود القانون والسلامة، وقد يوجهني إلى مختص عند الحاجة.</span></label>
+<div class="err" id="e-c">يلزم الموافقة على البنود الثلاثة.</div>
+<div class="err" id="e-b">أكمل الاسم ورقم الهاتف من فضلك.</div>
+
+<button type="button" class="go" id="send">إنشاء طلب التسجيل</button>
+</form>
+
+<div id="out">
+<h2>طلبك جاهز</h2>
+<div id="sum"></div>
+<button type="button" class="alt" id="copy">نسخ الطلب</button>
+<a id="wa" target="_blank" rel="noopener"><button type="button" class="go">إرسال عبر واتساب</button></a>
+</div>
+
+<div class="bc"><div class="a"><b>Zahid ADIL</b>كوتش</div>
+<div class="m"><b>Mastermind Academy</b><span>LEARN • TRANSFORM • ACHIEVE</span>معاً .. نحو نسخة أفضل من نفسك</div>
+<div class="z">0665112789 / 0684059899 | coachzahidadil@gmail.com</div></div>
+<footer>أكاديمية ماستر مايند – كوتشينغ داعم وليس علاجاً نفسياً</footer>
+</main>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function show(id,on){$(id).style.display=on?'block':'none'}
+$('send').addEventListener('click',function(){
+  var pk=document.querySelector('input[name=pk]:checked');
+  var okB=$('name').value.trim()&&$('tel').value.trim();
+  var okC=$('c1').checked&&$('c2').checked&&$('c3').checked;
+  show('e-b',!okB);show('e-pk',!pk);show('e-c',!okC);
+  if(!okB||!pk||!okC)return;
+  var L=['طلب تسجيل – برنامج المرافقة الداعمة بعد الفقد (ماستر مايند)','',
+   'الاسم: '+$('name').value.trim(),
+   'العمر: '+($('age').value||'-'),
+   'المدينة: '+($('city').value||'-'),
+   'الهاتف: '+$('tel').value.trim(),
+   'البريد: '+($('mail').value||'-'),
+   'الفقد: '+($('who').value||'-')+' | '+($('when').value||'-'),
+   'متابعة مع مختص: '+($('pro').value||'-'),
+   'ما أتمناه: '+($('why').value.trim()||'-'),
+   'الباقة: '+pk.value+' ('+pk.getAttribute('data-price')+' درهم)',
+   'الطريقة: '+$('fmt').value+' | الوقت: '+$('slot').value,
+   'الموافقة على البنود: نعم'];
+  var t=L.join('\n');
+  $('sum').textContent=t;
+  $('wa').href='https://wa.me/212665112789?text='+encodeURIComponent(t);
+  show('out',true);$('out').scrollIntoView({behavior:'smooth'});
+});
+$('copy').addEventListener('click',function(){
+  var t=$('sum').textContent;
+  try{navigator.clipboard.writeText(t).then(function(){$('copy').textContent='تم النسخ'})}
+  catch(e){var r=document.createRange();r.selectNode($('sum'));getSelection().removeAllRanges();getSelection().addRange(r)}
+});
+})();
+</script>
+</body>
+</html>
