@@ -69,6 +69,7 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
   <h1>معاً .. نحو نسخة أفضل من نفسك</h1>
   <p>مرافقة المدرب زهيد عادل في التطوير الذاتي، التسويق الشبكي بأخلاق وقيم، وتحليل الكتب.</p>
   <div class="quote"><p>«لا تغيّر حياتك قبل أن تفهم العقل الذي يصنعها»</p></div>
+  <div class="card" id="hlc" style="display:none"><p style="margin:0;color:var(--gold);font-weight:800">مقال اليوم | Article du jour</p><div id="hli"></div><h3 id="hlt"></h3><p id="hlx"></p><button class="btn" id="hlb">اقرأ المقال</button></div>
   <div class="card"><h3>فضاء الأعضاء | Espace membres</h3><p>للمنخرطين في البرامج: كراسة الزبون والكتب ونقاط الإحالة.</p><a class="btn" href="#members">دخول / تسجيل</a></div>
   <h2>خدمات الأكاديمية</h2>
   <div class="card"><h3>التطوير الذاتي</h3><p>جلسات وبرامج لفهم الفكر والمشاعر وبناء عادات جديدة.</p></div>
@@ -154,6 +155,7 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
     <label for="pn">الاسم الكامل | Nom complet</label><input id="pn" autocomplete="name">
     <label for="pt">الهاتف | Téléphone</label><input id="pt" type="tel" inputmode="tel" autocomplete="tel">
     <label for="ph">وقت الاتصال | Moment de rappel</label><select id="ph"><option>أي وقت | N’importe quand</option><option>صباحاً | Matin</option><option>مساءً | Soir</option></select>
+    <label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;margin-top:12px"><input id="pck" type="checkbox" style="width:auto;margin-top:6px"><span>أوافق على <a href="#privacy" style="color:var(--gold)">الخصوصية وشروط الاستخدام</a> | J’accepte la politique de confidentialité</span></label><input id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
     <div class="row"><button class="btn" id="pr">اطلب الاتصال | Demander un appel</button></div>
   </div>
   <div id="po" class="card" style="display:none;margin-top:16px">
@@ -171,6 +173,40 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
   <div class="msg" id="pm" role="status"></div>
 </section>
 
+<section class="view" id="v-privacy">
+  <h1>الخصوصية وشروط الاستخدام</h1>
+  <p>آخر تحديث: 26/11/2026</p>
+  <h2>من نحن</h2>
+  <p>أكاديمية ماستر مايند، بإشراف المدرب زهيد عادل (المغرب). للتواصل بخصوص بياناتك: coachzahidadil@gmail.com أو 0665112789.</p>
+  <h2>المعطيات التي نجمعها</h2>
+  <p>الاسم ورقم الهاتف والبريد الإلكتروني، والبرنامج الذي تطلبه، ورقم الطلب والمبلغ المتفق عليه، وصورة أو ملف إثبات التحويل البنكي، وبيانات حساب العضو (الحالة ورمز الإحالة والنقاط). كلمات السر لا نحتفظ بها نصاً، بل تُخزَّن مشفّرة لدى مزود المصادقة.</p>
+  <h2>لماذا نستعملها</h2>
+  <p>لمعالجة طلبك والتواصل معك، والتحقق من الدفع، وإدارة العضوية والمكتبة ونقاط الإحالة. لا نبيع بياناتك ولا نشاركها لأغراض إعلانية.</p>
+  <h2>الجهات التي تعالج البيانات</h2>
+  <p>مزود البنية Supabase (قاعدة البيانات والتخزين والمصادقة)، وGitHub Pages لاستضافة واجهة التطبيق، وواتساب عندما تراسلنا أو نراسلك عبره.</p>
+  <h2>الحفظ والحماية</h2>
+  <p>إثباتات الدفع في مخزن خاص لا يطّلع عليه إلا المدرب. لا يرى العضو بيانات غيره. نحتفظ بالبيانات المدة اللازمة لإدارة الطلب والعضوية والالتزامات المحاسبية.</p>
+  <h2>حقوقك</h2>
+  <p>يحق لك طلب الاطلاع على بياناتك أو تصحيحها أو حذفها أو الاعتراض على معالجتها، وفق القانون المغربي 09-08. راسلنا على البريد أعلاه.</p>
+  <h2>شروط الاستخدام</h2>
+  <p>تبدأ الخدمات بعد التواصل مع المدرب والاتفاق على البرنامج والثمن. لا يُفعَّل أي برنامج بمجرد رفع الوصل، بل بعد التحقق من وصول المبلغ.<br>مواد المكتبة للاستعمال الشخصي للعضو، ولا يجوز نشرها أو إعادة بيعها.<br>محتوى الأكاديمية للتوعية والتطوير الذاتي، ولا يغني عن الاستشارة الطبية أو النفسية أو القانونية المختصة.<br>يحق للأكاديمية إيقاف أي حساب يسيء الاستعمال. وتُنشر أي تعديلات على هذه الصفحة.</p>
+  <h2>Résumé en français</h2>
+  <p>Nous collectons nom, téléphone, e-mail, programme demandé, reçu de virement et données du compte membre afin de traiter vos demandes, vérifier les paiements et gérer l’espace membres. Nous ne vendons pas vos données. Vous pouvez demander l’accès, la rectification ou la suppression en écrivant à coachzahidadil@gmail.com (loi marocaine 09-08). Le contenu est à visée de développement personnel et ne remplace pas un avis médical, psychologique ou juridique.</p>
+</section>
+
+<section class="view" id="v-blog">
+  <h1>المدونة | Blog</h1>
+  <p>مقالات من المدرب زهيد عادل في الوعي والتطوير الذاتي.</p>
+  <div id="bl"></div>
+  <div id="ba" style="display:none">
+    <button class="btn alt" id="bb">رجوع | Retour</button>
+    <div id="bco" style="margin-top:12px"></div><h1 id="bat" style="margin-top:14px"></h1><p id="bam"></p><div id="bab"></div>
+    <div class="row"><button class="btn" id="bqa">اسأل المدرب | Poser une question</button><button class="btn" id="bsw">شارك عبر واتساب</button><button class="btn alt" id="bsc">نسخ الرابط</button></div>
+    <div class="quote"><p>من الفكرة إلى الوعي، ومن الوعي إلى التغيير.</p></div>
+    <a class="btn alt" href="#payment">ابدأ رحلتك مع الأكاديمية</a>
+  </div>
+</section>
+
 <section class="view" id="v-members">
   <h1>فضاء الأعضاء | Espace membres</h1>
   <div id="mbo">
@@ -178,8 +214,9 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
     <div id="mbl">
       <label for="mbe">البريد | E-mail</label><input id="mbe" type="email" autocomplete="username">
       <label for="mbp">كلمة السر | Mot de passe</label><input id="mbp" type="password" autocomplete="current-password">
-      <div class="row"><button class="btn" id="mblg">دخول | Connexion</button><button class="btn alt" id="mbtg">حساب جديد | Créer un compte</button></div>
+      <div class="row"><button class="btn" id="mblg">دخول | Connexion</button><button class="btn alt" id="mbtg">حساب جديد | Créer un compte</button><button class="btn alt" id="mbfp">نسيت كلمة السر | Mot de passe oublié</button></div>
     </div>
+    <div id="mbrs2" style="display:none"><label for="mbnp">كلمة سر جديدة | Nouveau mot de passe</label><input id="mbnp" type="password" autocomplete="new-password"><div class="row"><button class="btn" id="mbnb">حفظ | Enregistrer</button></div></div>
     <div id="mbr" style="display:none">
       <label for="mbn">الاسم الكامل | Nom complet</label><input id="mbn" autocomplete="name">
       <label for="mbt">الهاتف | Téléphone</label><input id="mbt" type="tel" inputmode="tel">
@@ -187,7 +224,8 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
       <label for="mbf">رمز الإحالة (اختياري) | Code de parrainage</label><input id="mbf" autocapitalize="characters">
       <label for="mbre">البريد | E-mail</label><input id="mbre" type="email" autocomplete="email">
       <label for="mbrp">كلمة السر (8 أحرف على الأقل) | Mot de passe</label><input id="mbrp" type="password" autocomplete="new-password">
-      <div class="row"><button class="btn" id="mbsg">إنشاء الحساب | Créer</button><button class="btn alt" id="mbback">لدي حساب | J’ai un compte</button></div>
+      <label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;margin-top:12px"><input id="mbck" type="checkbox" style="width:auto;margin-top:6px"><span>أوافق على <a href="#privacy" style="color:var(--gold)">الخصوصية وشروط الاستخدام</a> | J’accepte la politique de confidentialité</span></label><input id="hp2" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
+    <div class="row"><button class="btn" id="mbsg">إنشاء الحساب | Créer</button><button class="btn alt" id="mbback">لدي حساب | J’ai un compte</button></div>
     </div>
   </div>
   <div id="mbi" style="display:none">
@@ -209,11 +247,26 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
   <div id="cl">
     <label for="ce">البريد | E-mail</label><input id="ce" type="email" autocomplete="username">
     <label for="cp">كلمة السر | Mot de passe</label><input id="cp" type="password" autocomplete="current-password">
-    <div class="row"><button class="btn" id="cg">دخول | Connexion</button></div>
+    <div class="row"><button class="btn" id="cg">دخول | Connexion</button><button class="btn alt" id="cfp">نسيت كلمة السر</button></div>
   </div>
   <div id="cd" style="display:none">
     <div class="row" style="margin-top:0"><select id="cf" style="flex:1"><option value="awaiting_transfer">في انتظار التحويل</option><option value="proof_sent">تم إرسال إثبات الدفع</option><option value="under_review">قيد التحقق</option><option value="confirmed">تم تأكيد الدفع</option><option value="rejected">مرفوض</option></select><button class="btn alt" id="cr">تحديث</button><button class="btn alt" id="cx">خروج</button></div>
     <div id="cls" style="margin-top:12px"></div>
+    <details class="card" style="margin-top:14px"><summary>ملخص ونسخة احتياطية</summary>
+    <div class="row"><button class="btn alt" id="ksm">تحديث الملخص</button><button class="btn" id="kbk">تنزيل نسخة احتياطية (JSON)</button></div>
+    <div id="ksr" style="margin-top:10px"></div>
+    <p>النسخة تشمل الطلبات والأعضاء والنقاط والمقالات وقائمة المكتبة، ولا تشمل ملفات الوصولات والكتب نفسها ولا معلومات حسابك البنكي.</p>
+    </details>
+    <details class="card" style="margin-top:14px"><summary>المقالات (المدونة)</summary>
+    <label for="kat">العنوان</label><input id="kat">
+    <label for="kac">التصنيف (مثل: وعي، أسرة، تسويق شبكي)</label><input id="kac">
+    <label for="kab">النص (فقرة فارغة بين الفقرات؛ ## قبل العنوان الفرعي؛ &gt; قبل الاقتباس)</label><textarea id="kab" style="min-height:220px"></textarea>
+    <label for="kaf">صورة الغلاف (اختيارية، تُصغَّر تلقائياً)</label><input id="kaf" type="file" accept="image/jpeg,image/png,image/webp">
+    <label style="display:flex;gap:8px;align-items:center;font-weight:400"><input id="kar" type="checkbox" style="width:auto"> إزالة الغلاف الحالي</label>
+    <label for="kap">الحالة</label><select id="kap"><option value="1">منشور</option><option value="0">مسودة</option></select>
+    <div class="row"><button class="btn" id="kas">حفظ المقال</button><button class="btn alt" id="kan">مقال جديد</button></div>
+    <div id="kal" style="margin-top:10px"></div>
+    </details>
     <details class="card" style="margin-top:14px"><summary>الأعضاء ونقاط الإحالة</summary>
     <div class="row"><select id="kmf" style="flex:1"><option value="pending">قيد المراجعة</option><option value="active">مفعّلون</option><option value="suspended">موقوفون</option><option value="">الكل</option></select><button class="btn alt" id="kmr">تحديث</button></div>
     <div id="kml" style="margin-top:10px"></div>
@@ -243,13 +296,13 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
   </div>
   <h2>تابعنا</h2>
   <div class="row" style="margin-top:0"><a class="btn" href="https://www.tiktok.com/@coach_zahid" target="_blank" rel="noopener">تيك توك</a><a class="btn" href="https://www.instagram.com/mastermind.academy.pro" target="_blank" rel="noopener">إنستغرام</a><a class="btn" href="https://www.facebook.com/share/1E9tEYPLxE/" target="_blank" rel="noopener">فيسبوك</a></div>
-  <div class="row"><a class="btn alt" href="#members">فضاء الأعضاء</a><a class="btn alt" href="#coach">دخول المدرب</a><button class="btn alt" id="th">تبديل الوضع الفاتح / الداكن</button></div>
+  <div class="row"><a class="btn alt" href="#privacy">الخصوصية والشروط</a><a class="btn alt" href="#about">عن المدرب</a><a class="btn alt" href="#members">فضاء الأعضاء</a><a class="btn alt" href="#coach">دخول المدرب</a><button class="btn alt" id="th">تبديل الوضع الفاتح / الداكن</button></div>
 </section>
 </main>
 <nav aria-label="التنقل">
   <button class="tab on" data-v="home"><span>⌂</span>الرئيسية</button>
   <button class="tab" data-v="programs"><span>❖</span>البرامج</button>
-  <button class="tab" data-v="about"><span>☺</span>المدرب</button>
+  <button class="tab" data-v="blog"><span>✦</span>المدونة</button>
   <button class="tab" data-v="register"><span>✎</span>التسجيل</button>
   <button class="tab" data-v="contact"><span>☏</span>تواصل</button>
 </nav>
@@ -269,7 +322,7 @@ var $=function(i){return document.getElementById(i)};
 $("plist").innerHTML=P.map(function(x,i){return '<details class="card"><summary>'+x[0]+'</summary><span class="meta">'+x[1]+'</span><p>'+x[2]+'</p><button class="btn" data-p="'+i+'">سجّل في هذا البرنامج</button></details>'}).join("");
 $("p").innerHTML='<option value="">اختر البرنامج</option>'+P.map(function(x){return '<option>'+x[0]+'</option>'}).join("");
 var qi=0;function nq(){$("q").textContent=Q[qi=(qi+1)%Q.length]}qi=new Date().getDate()%Q.length-1;nq();$("nq").onclick=nq;
-function go(v){var ok=["home","programs","about","intro","register","payment","members","coach","contact"];if(ok.indexOf(v)<0)v="home";
+function go(v){var ok=["home","programs","about","intro","register","payment","members","blog","privacy","coach","contact"];if(ok.indexOf(v)<0)v="home";
 document.querySelectorAll(".view").forEach(function(e){e.classList.toggle("on",e.id==="v-"+v)});
 document.querySelectorAll(".tab").forEach(function(e){e.classList.toggle("on",e.dataset.v===v)});window.scrollTo(0,0)}
 document.querySelectorAll(".tab").forEach(function(b){b.onclick=function(){location.hash=b.dataset.v}});
@@ -302,9 +355,9 @@ $("up").style.display=(s.agreed_amount!=null&&(s.status==="awaiting_transfer"||s
 if(s.agreed_amount!=null&&s.status!=="confirmed"){rpc("get_bank_info",{p_order_no:o.no,p_token:o.tk}).then(function(b){var x=b[0],l=[];if(x){[["صاحب الحساب | Titulaire",x.account_holder],["البنك | Banque",x.bank_name],["RIB",x.rib],["IBAN",x.iban],["SWIFT",x.swift],["",x.note]].forEach(function(r){if(r[1])l.push((r[0]?r[0]+" : ":"")+r[1])})}
 $("bkt").textContent=l.length?l.join("\n"):"ستصلك معلومات الحساب من المدرب في واتساب. | Le coach vous enverra les coordonnées sur WhatsApp.";$("bk").style.display="block"})}else $("bk").style.display="none"
 }).catch(function(){say("خطأ في الاتصال | Erreur de connexion")})}
-$("pr").onclick=function(){if(!$("pp").value||!$("pn").value.trim()||!$("pt").value.trim()){say("اختر البرنامج وأدخل الاسم والهاتف. | Complétez les champs.");return}say("...");
+$("pr").onclick=function(){if($("hp").value)return;if(!$("pck").checked){say("يجب الموافقة على الخصوصية وشروط الاستخدام | Acceptez la politique de confidentialité");return}if(Date.now()-(window.LAST||0)<20000){say("انتظر قليلاً ثم أعد المحاولة | Patientez");return}window.LAST=Date.now();if(!$("pp").value||!$("pn").value.trim()||!$("pt").value.trim()){say("اختر البرنامج وأدخل الاسم والهاتف. | Complétez les champs.");return}say("...");
 rpc("create_order",{p_name:$("pn").value,p_phone:$("pt").value,p_city:"",p_program:$("pp").value,p_callback:$("ph").value}).then(function(a){var r=a[0];sv({no:r.order_no,tk:r.access_token});say("");ref();
-wa("السلام عليكم، أريد التسجيل في: "+$("pp").value+"\nرقم الطلب: "+r.order_no+"\nالاسم: "+$("pn").value+"\nالهاتف: "+$("pt").value+"\nأرجو الاتصال بي لتحديد الثمن.\nBonjour, je souhaite être rappelé(e) pour convenir du tarif.")}).catch(function(){say("تعذر إنشاء الطلب | Échec de la demande")})};
+wa("السلام عليكم، أريد التسجيل في: "+$("pp").value+"\nرقم الطلب: "+r.order_no+"\nالاسم: "+$("pn").value+"\nالهاتف: "+$("pt").value+"\nأرجو الاتصال بي لتحديد الثمن.\nBonjour, je souhaite être rappelé(e) pour convenir du tarif.")}).catch(function(){say("تعذر إنشاء الطلب. قد تكون تجاوزت عدد المحاولات، حاول لاحقاً أو راسلنا. | Échec ou trop de tentatives")})};
 $("pg").onclick=ref;$("pc").onclick=function(){sv(null);say("");ref()};
 $("pu").onclick=function(){var o=ord(),f=$("pfile").files[0];if(!o)return;if(!f){say("اختر الملف | Choisissez un fichier");return}
 if(f.size>5*1024*1024){say("الحجم أكبر من 5MB | Fichier trop lourd");return}
@@ -315,6 +368,62 @@ say("تم رفع الوصل ✓ | Reçu envoyé ✓");ref();wa("السلام ع�
 ref();
 var SG=[["الوعي","نقترح أن تبدأ بمكالمة تعارف مع المدرب لتحديد المسار، فهذه المرحلة تقوم على فهم الذات وأنماط التفكير."],["إعادة البناء","نقترح برنامج Paradigm Shift 2.0 الذي يعنى بإعادة بناء المعتقدات والأنماط الفكرية والسلوكية، بعد تأكيد المدرب لمناسبته لك."],["التحول","نقترح أن تحدد مع المدرب خطتك العملية في مكالمة قصيرة، ليختار معك الخدمة الأنسب لحالتك."]];
 document.querySelectorAll("[data-sg]").forEach(function(b){b.onclick=function(){var g=SG[b.dataset.sg];$("sgt").textContent="مرحلتك الأقرب: "+g[0];$("sgx").textContent=g[1];$("sgr").style.display="block"}});
+/* ---- المدونة ---- */
+function cov(p){return SB+"/storage/v1/object/public/blog/"+p}
+function cimg(p,alt){var i=document.createElement("img");i.src=cov(p);i.alt=alt||"";i.loading="lazy";i.style.cssText="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block;margin-bottom:10px";return i}
+function shrink(f){return new Promise(function(ok,no){var u=URL.createObjectURL(f),im=new Image();im.onload=function(){var r=Math.min(1,1280/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(function(b){b?ok(b):no()},"image/jpeg",.82)};im.onerror=no;im.src=u})}
+var AR=null;
+function dt(x){var d=new Date(x);return("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear()}
+function loadBlog(){api("/rest/v1/articles?select=id,title,category,excerpt,published_at,cover_path&is_published=eq.true&order=published_at.desc&limit=30").then(function(r){return r.json()}).then(function(L){if(!Array.isArray(L))throw 0;var b=$("bl");b.innerHTML="";
+if(!L.length)b.appendChild(el("p","لا توجد مقالات بعد | Aucun article"));
+L.forEach(function(x){var c=el("div",null,"card");if(x.cover_path)c.appendChild(cimg(x.cover_path,x.title));if(x.category)c.appendChild(el("p",x.category,"")).style.cssText="margin:0;color:var(--gold);font-weight:800";c.appendChild(el("h3",x.title));c.appendChild(el("p",(x.excerpt||"")+"…"));c.appendChild(el("p",dt(x.published_at))).style.fontSize="13px";var bt=el("button","اقرأ | Lire","btn");bt.onclick=function(){openA(x.id)};c.appendChild(bt);b.appendChild(c)});
+if(L[0]){$("hlc").style.display="block";$("hlt").textContent=L[0].title;var hi=$("hli");hi.innerHTML="";if(L[0].cover_path)hi.appendChild(cimg(L[0].cover_path,L[0].title));$("hlx").textContent=(L[0].excerpt||"")+"…";$("hlb").onclick=function(){openA(L[0].id)}}}).catch(function(){$("bl").textContent="تعذر تحميل المقالات | Chargement impossible"})}
+function openA(id){api("/rest/v1/articles?id=eq."+encodeURIComponent(id)+"&is_published=eq.true&select=id,title,category,body,published_at,cover_path").then(function(r){return r.json()}).then(function(a){var x=a&&a[0];if(!x)return;AR=x;$("bl").style.display="none";$("ba").style.display="block";$("bat").textContent=x.title;var bo=$("bco");bo.innerHTML="";if(x.cover_path)bo.appendChild(cimg(x.cover_path,x.title));
+var w=x.body.trim().split(/\s+/).length;$("bam").textContent=(x.category?x.category+" · ":"")+dt(x.published_at)+" · "+Math.max(1,Math.round(w/180))+" دقيقة قراءة | min";
+var b=$("bab");b.innerHTML="";x.body.split(/\n{2,}/).forEach(function(par){par=par.trim();if(!par)return;var e;
+if(par.indexOf("## ")===0)e=el("h2",par.slice(3));else if(par.indexOf("> ")===0){e=el("div",null,"quote");e.appendChild(el("p",par.slice(2)))}else{e=el("p",par);e.style.color="var(--ink)";e.style.whiteSpace="pre-line"}b.appendChild(e)});
+location.hash="blog";window.scrollTo(0,0)}).catch(function(){})}
+$("bb").onclick=function(){$("ba").style.display="none";$("bl").style.display="block";window.scrollTo(0,0)};
+function alink(){return SU+"?a="+AR.id+"#blog"}
+$("bsw").onclick=function(){if(AR)window.open("https://wa.me/?text="+encodeURIComponent(AR.title+"\n"+alink()),"_blank")};
+$("bsc").onclick=function(){if(!AR)return;try{navigator.clipboard.writeText(alink())}catch(e){}};
+$("bqa").onclick=function(){if(AR)window.open("https://wa.me/212665112789?text="+encodeURIComponent("السلام عليكم أستاذ زهيد، لدي سؤال بخصوص مقال: "+AR.title+"\n"+alink()),"_blank")};
+loadBlog();
+try{var qa=new URLSearchParams(location.search).get("a");if(qa)openA(qa)}catch(e){}
+/* ---- كتابة المقالات (المدرب) ---- */
+var AID=null,AC=null;
+function aclear(){AID=null;AC=null;$("kaf").value="";$("kar").checked=false;$("kat").value="";$("kac").value="";$("kab").value="";$("kap").value="1"}
+function la(){ca("/rest/v1/articles?select=id,title,is_published,published_at,created_at,cover_path&order=created_at.desc&limit=50").then(function(r){return r.json()}).then(function(L){var b=$("kal");b.innerHTML="";L.forEach(function(x){var c=el("div",null,"card");c.appendChild(el("h3",x.title));c.appendChild(el("p",(x.is_published?"منشور":"مسودة")+" · "+dt(x.created_at)));var r=el("div",null,"row");
+var e=el("button","تعديل","btn alt");e.onclick=function(){ca("/rest/v1/articles?id=eq."+x.id+"&select=*").then(function(q){return q.json()}).then(function(a){var y=a[0];AID=y.id;AC=y.cover_path||null;$("kat").value=y.title;$("kac").value=y.category||"";$("kab").value=y.body;$("kap").value=y.is_published?"1":"0";window.scrollTo(0,0);cm("جرى تحميل المقال للتعديل")})};r.appendChild(e);
+var t=el("button",x.is_published?"إلغاء النشر":"نشر","btn alt");t.onclick=function(){ca("/rest/v1/articles?id=eq."+x.id,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({is_published:!x.is_published})}).then(function(){la();loadBlog()})};r.appendChild(t);
+var d=el("button","حذف","btn alt");d.onclick=function(){if(confirm("حذف المقال نهائياً؟")){if(x.cover_path)ca("/storage/v1/object/blog/"+x.cover_path,{method:"DELETE"});ca("/rest/v1/articles?id=eq."+x.id,{method:"DELETE"}).then(function(){la();loadBlog()})}};r.appendChild(d);c.appendChild(r);b.appendChild(c)})})}
+$("kas").onclick=function(){var t=$("kat").value.trim(),bd=$("kab").value.trim(),f=$("kaf").files[0],rm=$("kar").checked,old=AC;if(t.length<3||!bd){cm("أدخل العنوان والنص");return}
+function put(cp){var o={title:t,category:$("kac").value.trim()||null,body:bd,is_published:$("kap").value==="1"};if(cp!==undefined)o.cover_path=cp;
+return ca(AID?"/rest/v1/articles?id=eq."+AID:"/rest/v1/articles",{method:AID?"PATCH":"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify(o)}).then(function(r){if(!r.ok)throw 0;if(old&&(f||rm))ca("/storage/v1/object/blog/"+old,{method:"DELETE"});cm("تم حفظ المقال ✓");aclear();la();loadBlog()})}
+if(f){cm("جار معالجة الصورة...");shrink(f).then(function(b){var path=Date.now()+"-"+Math.floor(Math.random()*1e6)+".jpg";return ca("/storage/v1/object/blog/"+path,{method:"POST",headers:{"Content-Type":"image/jpeg"},body:b}).then(function(r){if(!r.ok)throw 0;return put(path)})}).catch(function(){cm("فشل رفع الصورة أو الحفظ")})}
+else put(rm?null:undefined).catch(function(){cm("فشل الحفظ")})};
+$("kan").onclick=function(){aclear();cm("")};
+/* ---- كلمة السر + أدوات المدرب ---- */
+var RT=null;
+function recov(email,cb){if(!email){cb("أدخل بريدك أولاً | Saisissez votre e-mail");return}api("/auth/v1/recover?redirect_to="+encodeURIComponent(SU),{method:"POST",body:JSON.stringify({email:email})}).then(function(){cb("إن كان البريد مسجلاً ستصلك رسالة لإعادة تعيين كلمة السر. | Si l’e-mail existe, un lien vous sera envoyé.")}).catch(function(){cb("تعذر الإرسال | Échec")})}
+$("mbfp").onclick=function(){recov($("mbe").value.trim(),mm)};
+$("cfp").onclick=function(){recov($("ce").value.trim(),cm)};
+(function(){var h=location.hash;if(h.indexOf("type=recovery")>-1){var tk=new URLSearchParams(h.slice(1)).get("access_token");if(tk){RT=tk;history.replaceState(null,"",location.pathname+location.search+"#members");go("members");$("mbl").style.display="none";$("mbr").style.display="none";$("mbrs2").style.display="block";mm("اكتب كلمة سر جديدة | Entrez un nouveau mot de passe")}}else if(h.indexOf("error_code=")>-1){history.replaceState(null,"",location.pathname+location.search+"#members");go("members");mm("الرابط غير صالح أو منتهي، اطلب رابطاً جديداً | Lien invalide ou expiré")}})();
+$("mbnb").onclick=function(){var pw=$("mbnp").value;if(pw.length<8){mm("8 أحرف على الأقل | 8 caractères minimum");return}api("/auth/v1/user",{method:"PUT",body:JSON.stringify({password:pw})},RT).then(function(r){if(!r.ok)throw 0;$("mbnp").value="";RT=null;$("mbrs2").style.display="none";$("mbl").style.display="block";mm("تم تغيير كلمة السر ✓ سجّل الدخول الآن | Mot de passe modifié ✓")}).catch(function(){mm("انتهت صلاحية الرابط، اطلب رابطاً جديداً | Lien expiré")})};
+function intl(p){var d=String(p).replace(/\D/g,"");if(d.indexOf("00")===0)d=d.slice(2);else if(d.charAt(0)==="0")d="212"+d.slice(1);return d}
+function wmsg(o){var h="السلام عليكم "+o.client_name+"، معك المدرب زهيد عادل من أكاديمية ماستر مايند.\nطلبك رقم "+o.order_no+": ";
+if(o.status==="awaiting_transfer")return h+(o.agreed_amount!=null?"تم تحديد مبلغ برنامجك: "+o.agreed_amount+" "+o.currency+". ستجد معلومات التحويل في التطبيق (صفحة الدفع البنكي) برقم طلبك، وبعد التحويل ارفع صورة الوصل هناك.":"أرجو أن تخبرني بوقت مناسب لمكالمة نحدد فيها البرنامج والثمن.");
+if(o.status==="proof_sent"||o.status==="under_review")return h+"استلمنا إثبات الدفع وهو قيد التحقق.";
+if(o.status==="confirmed")return h+"تم تأكيد الدفع. مرحباً بك في الأكاديمية.";
+return h+"تعذر قبول إثبات الدفع"+(o.rejection_reason?" بسبب: "+o.rejection_reason:"")+". يمكنك رفع وصل جديد من التطبيق."}
+function jn(r){return r.json()}
+$("ksm").onclick=function(){cm("...");Promise.all([ca("/rest/v1/orders?select=status").then(jn),ra("coach_members",{p_status:null},T),ca("/rest/v1/articles?select=is_published").then(jn),ca("/rest/v1/library_items?select=id").then(jn)]).then(function(a){var b=$("ksr");b.innerHTML="";var cnt={};a[0].forEach(function(x){cnt[x.status]=(cnt[x.status]||0)+1});
+Object.keys(ST).forEach(function(k){b.appendChild(el("p","طلبات — "+ST[k].split(" | ")[0]+": "+(cnt[k]||0)))});
+var m={};a[1].forEach(function(x){m[x.status]=(m[x.status]||0)+1});b.appendChild(el("p","الأعضاء — مفعّلون: "+(m.active||0)+" · قيد المراجعة: "+(m.pending||0)+" · موقوفون: "+(m.suspended||0)));
+b.appendChild(el("p","النقاط الموزعة: "+a[1].reduce(function(t,x){return t+Number(x.points||0)},0)));
+b.appendChild(el("p","المقالات المنشورة: "+a[2].filter(function(x){return x.is_published}).length+" من "+a[2].length+" · ملفات المكتبة: "+a[3].length));cm("")}).catch(function(){cm("تعذر تحميل الملخص")})};
+$("kbk").onclick=function(){cm("جار تجهيز النسخة...");Promise.all([ca("/rest/v1/orders?select=id,order_no,client_name,phone,city,program,callback_time,agreed_amount,currency,status,rejection_reason,reviewed_at,created_at,payment_proofs(*)&order=created_at.desc").then(jn),ra("coach_members",{p_status:null},T),ca("/rest/v1/points_ledger?select=*").then(jn),ca("/rest/v1/articles?select=*").then(jn),ca("/rest/v1/library_items?select=*").then(jn),ca("/rest/v1/app_settings?select=*").then(jn)]).then(function(a){
+var d={exported_at:new Date().toISOString(),orders:a[0],members:a[1],points_ledger:a[2],articles:a[3],library_items:a[4],app_settings:a[5]};var bl=new Blob([JSON.stringify(d,null,1)],{type:"application/json"}),u=URL.createObjectURL(bl),l=document.createElement("a");l.href=u;l.download="mastermind-backup-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(l);l.click();l.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);cm("تم تجهيز النسخة ✓")}).catch(function(){cm("فشل تجهيز النسخة")})};
 /* ---- الأعضاء ---- */
 var MT=null,SU=location.origin+location.pathname;
 function mm(t){$("mbm").textContent=t||""}
@@ -323,8 +432,8 @@ $("mbg").innerHTML=$("p").innerHTML;
 try{var rf0=new URLSearchParams(location.search).get("ref");if(rf0){$("mbf").value=rf0;$("mbr").style.display="block";$("mbl").style.display="none"}}catch(e){}
 $("mbtg").onclick=function(){$("mbr").style.display="block";$("mbl").style.display="none"};
 $("mbback").onclick=function(){$("mbr").style.display="none";$("mbl").style.display="block"};
-$("mbsg").onclick=function(){var n=$("mbn").value.trim(),e=$("mbre").value.trim(),pw=$("mbrp").value;if(n.length<2||!e||pw.length<8){mm("أكمل الاسم والبريد وكلمة سر من 8 أحرف | Complétez les champs (mot de passe ≥ 8)");return}mm("...");
-api("/auth/v1/signup",{method:"POST",body:JSON.stringify({email:e,password:pw,data:{full_name:n,phone:$("mbt").value.trim(),program:$("mbg").value,ref:$("mbf").value.trim()}})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j})}).then(function(){mm("تم إنشاء الحساب. افتح رسالة التأكيد في بريدك ثم سجّل الدخول. | Compte créé : confirmez votre e-mail puis connectez-vous.");$("mbr").style.display="none";$("mbl").style.display="block"}).catch(function(j){mm((j&&(j.msg||j.error_description))||"تعذر إنشاء الحساب | Échec")})};
+$("mbsg").onclick=function(){var n=$("mbn").value.trim(),e=$("mbre").value.trim(),pw=$("mbrp").value;if($("hp2").value)return;if(!$("mbck").checked){mm("يجب الموافقة على الخصوصية وشروط الاستخدام | Acceptez la politique de confidentialité");return}if(n.length<2||!e||pw.length<8){mm("أكمل الاسم والبريد وكلمة سر من 8 أحرف | Complétez les champs (mot de passe ≥ 8)");return}mm("...");
+api("/auth/v1/signup?redirect_to="+encodeURIComponent(SU),{method:"POST",body:JSON.stringify({email:e,password:pw,data:{full_name:n,phone:$("mbt").value.trim(),program:$("mbg").value,ref:$("mbf").value.trim()}})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j})}).then(function(){mm("تم إنشاء الحساب. افتح رسالة التأكيد في بريدك ثم سجّل الدخول. | Compte créé : confirmez votre e-mail puis connectez-vous.");$("mbr").style.display="none";$("mbl").style.display="block"}).catch(function(j){mm((j&&(j.msg||j.error_description))||"تعذر إنشاء الحساب | Échec")})};
 function mlogin(b,g){return api("/auth/v1/token?grant_type="+g,{method:"POST",body:JSON.stringify(b)}).then(function(r){return r.json()}).then(function(j){if(!j.access_token)throw j;MT=j.access_token;try{localStorage.setItem("mm_rt",j.refresh_token)}catch(e){}return mdash()})}
 $("mblg").onclick=function(){mm("...");mlogin({email:$("mbe").value.trim(),password:$("mbp").value},"password").then(function(){$("mbp").value="";mm("")}).catch(function(){mm("بيانات الدخول غير صحيحة أو البريد غير مؤكد | Identifiants incorrects ou e-mail non confirmé")})};
 function mdash(){return ra("my_summary",{},MT).then(function(a){if(a&&a[0])return a[0];
@@ -379,13 +488,13 @@ $("kmf").onchange=lm;$("kmr").onclick=lm;
 var T=null;function cm(t){$("cm").textContent=t||""}
 function ca(p,o){return api(p,o,T)}
 function el(t,x,c){var e=document.createElement(t);if(x!=null)e.textContent=x;if(c)e.className=c;return e}
-$("cg").onclick=function(){cm("...");api("/auth/v1/token?grant_type=password",{method:"POST",body:JSON.stringify({email:$("ce").value.trim(),password:$("cp").value})}).then(function(r){return r.json()}).then(function(j){if(!j.access_token){cm("بيانات الدخول غير صحيحة");return}T=j.access_token;$("cp").value="";cm("");$("cl").style.display="none";$("cd").style.display="block";lo();lb();lm();ll();ls()}).catch(function(){cm("خطأ في الاتصال")})};
+$("cg").onclick=function(){cm("...");api("/auth/v1/token?grant_type=password",{method:"POST",body:JSON.stringify({email:$("ce").value.trim(),password:$("cp").value})}).then(function(r){return r.json()}).then(function(j){if(!j.access_token){cm("بيانات الدخول غير صحيحة");return}T=j.access_token;$("cp").value="";cm("");$("cl").style.display="none";$("cd").style.display="block";lo();lb();lm();ll();ls();la()}).catch(function(){cm("خطأ في الاتصال")})};
 $("cx").onclick=function(){T=null;$("cd").style.display="none";$("cl").style.display="block";$("cls").innerHTML=""};
 $("cr").onclick=lo;$("cf").onchange=lo;
 function pt(id,b,msg){ca("/rest/v1/orders?id=eq."+id,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify(b)}).then(function(r){if(!r.ok)throw 0;cm(msg||"تم ✓");lo()}).catch(function(){cm("فشل الحفظ")})}
 function lo(){cm("...");ca("/rest/v1/orders?select=*,payment_proofs(file_path,amount,sent_at)&order=created_at.desc&status=eq."+$("cf").value).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(L){cm(L.length?"":"لا توجد طلبات");var box=$("cls");box.innerHTML="";L.forEach(function(o){var c=el("div",null,"card");c.appendChild(el("h3",o.client_name+" — "+o.order_no));
 c.appendChild(el("p",o.program+" · "+new Date(o.created_at).toLocaleDateString("fr-FR")));
-var ph=el("a",o.phone,"btn alt");ph.href="tel:"+o.phone.replace(/[^+\d]/g,"");c.appendChild(ph);
+var ph=el("a",o.phone,"btn alt");ph.href="tel:"+o.phone.replace(/[^+\d]/g,"");c.appendChild(ph);var wb=el("a","واتساب العميل","btn alt");wb.href="https://wa.me/"+intl(o.phone)+"?text="+encodeURIComponent(wmsg(o));wb.target="_blank";wb.rel="noopener";c.appendChild(wb);
 var am=el("input");am.type="number";am.inputMode="decimal";am.placeholder="المبلغ المتفق عليه (MAD)";am.value=o.agreed_amount==null?"":o.agreed_amount;am.style.marginTop="8px";c.appendChild(am);
 var r=el("div",null,"row");var sb=el("button","حفظ المبلغ","btn alt");sb.onclick=function(){var v=parseFloat(am.value);if(isNaN(v)||v<0){cm("مبلغ غير صالح");return}pt(o.id,{agreed_amount:v},"حُفظ المبلغ ✓")};r.appendChild(sb);
 var P=o.payment_proofs||[];if(P.length){P.sort(function(a,b){return a.sent_at<b.sent_at?1:-1});var vb=el("button","عرض الوصل","btn alt");vb.onclick=function(){var w=window.open("","_blank");ca("/storage/v1/object/sign/receipts/"+P[0].file_path,{method:"POST",body:JSON.stringify({expiresIn:300})}).then(function(x){return x.json()}).then(function(j){if(!j.signedURL)throw 0;w.location=SB+"/storage/v1"+j.signedURL}).catch(function(){if(w)w.close();cm("تعذر فتح الوصل")})};r.appendChild(vb)}
