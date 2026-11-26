@@ -18,6 +18,9 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--g:#0B2A20;--g2:#2C7A5C;--gold:#D8B45E;--bg:#0E1713;--card:#16241D;--ink:#EFE8D2;--mut:#A7B3AB;--line:#2A3B32;color-scheme:dark}}
 :root[data-theme="dark"]{--g:#0B2A20;--g2:#2C7A5C;--gold:#D8B45E;--bg:#0E1713;--card:#16241D;--ink:#EFE8D2;--mut:#A7B3AB;--line:#2A3B32;color-scheme:dark}
 *{box-sizing:border-box}
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select,.sel,#bkt,#on,#mbcode,#v-coach,#v-coach *{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+img{-webkit-user-drag:none}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:'Cairo','Segoe UI',Tahoma,sans-serif;line-height:1.8;padding-bottom:84px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--g);z-index:10}
@@ -194,6 +197,7 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
         <div class="row"><button class="btn alt" id="mbcp">نسخ الرابط</button><a class="btn" id="mbwa" target="_blank" rel="noopener">شارك عبر واتساب</a></div></div>
       <div class="card"><h3>نقاطي | Mes points</h3><p style="margin:0"><b id="mbpt" style="font-size:30px;color:var(--gold)"></b></p><p id="mbrs"></p><div id="mbrl"></div></div>
       <h2>المكتبة | Bibliothèque</h2><div id="mblib"></div>
+      <h2>المحاضرات والفيديوهات | Médias</h2><div id="mbmed"></div>
     </div>
     <div class="row"><button class="btn alt" id="mblo">خروج | Déconnexion</button></div>
   </div>
@@ -217,9 +221,10 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
     </details>
     <details class="card"><summary>مكتبة الأعضاء (الكراسة والكتب)</summary>
     <label for="klt">العنوان</label><input id="klt"><label for="kld">الوصف (اختياري)</label><input id="kld">
-    <label for="klk">النوع</label><select id="klk"><option value="workbook">كراسة الزبون</option><option value="book">كتاب</option><option value="other">ملف آخر</option></select>
-    <label for="klf">الملف (PDF أو EPUB أو DOCX أو صورة، حتى 50MB)</label><input id="klf" type="file" accept=".pdf,.epub,.docx,image/jpeg,image/png">
-    <div class="row"><button class="btn" id="klu">رفع الملف</button></div><div id="kll" style="margin-top:10px"></div>
+    <label for="klk">النوع</label><select id="klk"><option value="workbook">كراسة الزبون</option><option value="book">كتاب</option><option value="audio">محاضرة صوتية</option><option value="video">فيديو</option><option value="other">ملف آخر</option></select>
+    <label for="klf">الملف (PDF أو EPUB أو DOCX أو MP3 أو M4A أو MP4، حتى 50MB)</label><input id="klf" type="file" accept=".pdf,.epub,.docx,.mp3,.m4a,.mp4,.webm,image/jpeg,image/png,audio/*,video/mp4,video/webm">
+    <label for="klx">أو رابط فيديو (يوتيوب «غير مدرج» أو Vimeo) بدل رفع ملف</label><input id="klx" type="url" placeholder="https://">
+    <div class="row"><button class="btn" id="klu">إضافة</button></div><div id="kll" style="margin-top:10px"></div>
     </details>
     <h2>معلومات الحساب البنكي</h2>
     <label for="bh">صاحب الحساب</label><input id="bh"><label for="bn">البنك</label><input id="bn"><label for="br">RIB</label><input id="br" inputmode="numeric"><label for="bi">IBAN</label><input id="bi"><label for="bs">SWIFT</label><input id="bs"><label for="bt">ملاحظة للعميل</label><textarea id="bt"></textarea>
@@ -333,9 +338,19 @@ $("mbcp").onclick=function(){try{navigator.clipboard.writeText(link);mm("تم ا
 $("mbwa").href="https://wa.me/?text="+encodeURIComponent("انضم إلى أكاديمية ماستر مايند عبر رابطي: "+link);
 $("mbpt").textContent=s.points;$("mbrs").textContent="الإحالات: "+s.referrals_total+" (مفعّل: "+s.referrals_active+") | Parrainés : "+s.referrals_total;
 ra("my_referrals",{},MT).then(function(L){var b=$("mbrl");b.innerHTML="";L.forEach(function(x){b.appendChild(el("p",x.first_name+" — "+(x.status==="active"?"مفعّل":"قيد المراجعة")))})});
-api("/rest/v1/library_items?select=id,title,description,kind,file_path&order=created_at.desc",{},MT).then(function(r){return r.json()}).then(function(L){var b=$("mblib");b.innerHTML="";if(!L.length)b.appendChild(el("p","لا توجد ملفات بعد | Aucun fichier"));
-L.forEach(function(x){var c=el("div",null,"card");c.appendChild(el("h3",({workbook:"كراسة | ",book:"كتاب | ",other:""})[x.kind]+x.title));if(x.description)c.appendChild(el("p",x.description));
-var d=el("button","تحميل | Télécharger","btn");d.onclick=function(){var w=window.open("","_blank");api("/storage/v1/object/sign/library/"+x.file_path,{method:"POST",body:JSON.stringify({expiresIn:300})},MT).then(function(r){return r.json()}).then(function(j){if(!j.signedURL)throw 0;w.location=SB+"/storage/v1"+j.signedURL}).catch(function(){if(w)w.close();mm("تعذر التحميل | Échec")})};c.appendChild(d);b.appendChild(c)})})}
+api("/rest/v1/library_items?select=id,title,description,kind,file_path,external_url&order=created_at.desc",{},MT).then(function(r){return r.json()}).then(function(L){var d=$("mblib"),m=$("mbmed");d.innerHTML="";m.innerHTML="";var nd=0,nm=0;
+L.forEach(function(x){var med=x.kind==="audio"||x.kind==="video";var c=el("div",null,"card");c.appendChild(el("h3",({workbook:"كراسة | ",book:"كتاب | ",audio:"صوتية | ",video:"فيديو | ",other:""})[x.kind]+x.title));if(x.description)c.appendChild(el("p",x.description));
+var box=el("div");c.appendChild(box);var bt=el("button",med?"تشغيل | Lire":"تحميل | Télécharger","btn");bt.onclick=function(){mopen(x,box,bt)};c.appendChild(bt);
+if(med){m.appendChild(c);nm++}else{d.appendChild(c);nd++}});
+if(!nd)d.appendChild(el("p","لا توجد ملفات بعد | Aucun fichier"));if(!nm)m.appendChild(el("p","لا توجد وسائط بعد | Aucun média"))})}
+function yt(u){var m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);if(m)return"https://www.youtube-nocookie.com/embed/"+m[1];m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);return m?"https://player.vimeo.com/video/"+m[1]:null}
+function mopen(x,box,bt){
+if(x.external_url){var e=yt(x.external_url);if(e){box.innerHTML="";var f=document.createElement("iframe");f.src=e;f.allowFullscreen=true;f.setAttribute("allow","autoplay; fullscreen; picture-in-picture");f.style.cssText="width:100%;aspect-ratio:16/9;border:0;border-radius:10px;margin-top:8px";box.appendChild(f);bt.style.display="none"}else window.open(x.external_url,"_blank","noopener");return}
+var med=x.kind==="audio"||x.kind==="video";var w=med?null:window.open("","_blank");
+api("/storage/v1/object/sign/library/"+x.file_path,{method:"POST",body:JSON.stringify({expiresIn:med?7200:300})},MT).then(function(r){return r.json()}).then(function(j){if(!j.signedURL)throw 0;var u=SB+"/storage/v1"+j.signedURL;
+if(!med){w.location=u;return}
+box.innerHTML="";var pl=document.createElement(x.kind==="video"?"video":"audio");pl.src=u;pl.controls=true;pl.setAttribute("controlsList","nodownload");pl.setAttribute("playsinline","");pl.oncontextmenu=function(){return false};pl.style.cssText="width:100%;margin-top:8px;border-radius:10px";box.appendChild(pl);bt.style.display="none";var q=pl.play();if(q&&q.catch)q.catch(function(){})
+}).catch(function(){if(w)w.close();mm("تعذر التشغيل | Échec")})}
 try{var rt0=localStorage.getItem("mm_rt");if(rt0)mlogin({refresh_token:rt0},"refresh_token").catch(function(){try{localStorage.removeItem("mm_rt")}catch(e){}})}catch(e){}
 $("mblo").onclick=function(){MT=null;try{localStorage.removeItem("mm_rt")}catch(e){}$("mbi").style.display="none";$("mbo").style.display="block";mm("")};
 /* ---- إدارة الأعضاء والمكتبة (المدرب) ---- */
@@ -351,10 +366,12 @@ c.appendChild(r);b.appendChild(c)})}).catch(function(){cm("تعذر تحميل �
 function ll(){ca("/rest/v1/library_items?select=*&order=created_at.desc").then(function(r){return r.json()}).then(function(L){var b=$("kll");b.innerHTML="";L.forEach(function(x){var c=el("div",null,"card");c.appendChild(el("h3",x.title));c.appendChild(el("p",x.kind+(x.is_active?"":" · مخفي")));var r=el("div",null,"row");
 var h=el("button",x.is_active?"إخفاء":"إظهار","btn alt");h.onclick=function(){ca("/rest/v1/library_items?id=eq."+x.id,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({is_active:!x.is_active})}).then(ll)};r.appendChild(h);
 var d=el("button","حذف","btn alt");d.onclick=function(){if(!confirm("حذف الملف نهائياً؟"))return;ca("/storage/v1/object/library/"+x.file_path,{method:"DELETE"}).then(function(){return ca("/rest/v1/library_items?id=eq."+x.id,{method:"DELETE"})}).then(function(){ll()})};r.appendChild(d);c.appendChild(r);b.appendChild(c)})})}
-$("klu").onclick=function(){var f=$("klf").files[0],t=$("klt").value.trim();if(!f||t.length<2){cm("اختر ملفاً وأدخل العنوان");return}
-if(f.size>50*1024*1024){cm("الملف أكبر من 50MB");return}
+$("klu").onclick=function(){var f=$("klf").files[0],t=$("klt").value.trim(),xu=$("klx").value.trim();if(t.length<2||(!f&&!xu)){cm("أدخل العنوان واختر ملفاً أو ضع رابطاً");return}
+function ins(path,url){return ca("/rest/v1/library_items",{method:"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify({title:t,description:$("kld").value.trim()||null,kind:$("klk").value,file_path:path,external_url:url})}).then(function(r){if(!r.ok)throw 0;cm("تمت الإضافة ✓");$("klt").value="";$("kld").value="";$("klf").value="";$("klx").value="";ll()})}
+if(xu){if(!/^https:\/\//.test(xu)){cm("الرابط يجب أن يبدأ بـ https://");return}ins(null,xu).catch(function(){cm("فشل الحفظ")});return}
+if(f.size>50*1024*1024){cm("الملف أكبر من 50MB. للفيديوهات الكبيرة استعمل رابط يوتيوب أو Vimeo");return}
 var ext=(f.name.split(".").pop()||"bin").toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,5)||"bin",path=Date.now()+"-"+Math.floor(Math.random()*1e6)+"."+ext;cm("جار الرفع...");
-ca("/storage/v1/object/library/"+path,{method:"POST",headers:{"Content-Type":f.type||"application/octet-stream"},body:f}).then(function(r){if(!r.ok)throw 0;return ca("/rest/v1/library_items",{method:"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify({title:t,description:$("kld").value.trim()||null,kind:$("klk").value,file_path:path})})}).then(function(r){if(!r.ok)throw 0;cm("تمت إضافة الملف ✓");$("klt").value="";$("kld").value="";$("klf").value="";ll()}).catch(function(){cm("فشل الرفع (PDF أو EPUB أو DOCX أو صورة، حتى 50MB)")})};
+ca("/storage/v1/object/library/"+path,{method:"POST",headers:{"Content-Type":f.type||"application/octet-stream"},body:f}).then(function(r){if(!r.ok)throw 0;return ins(path,null)}).catch(function(){cm("فشل الرفع (PDF أو EPUB أو DOCX أو MP3 أو M4A أو MP4، حتى 50MB)")})};
 function ls(){ca("/rest/v1/app_settings?id=eq.1&select=points_per_referral").then(function(r){return r.json()}).then(function(a){$("ksp").value=a[0]?a[0].points_per_referral:10})}
 $("kss").onclick=function(){var v=parseInt($("ksp").value,10);if(isNaN(v)||v<0){cm("قيمة غير صالحة");return}ca("/rest/v1/app_settings?id=eq.1",{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({points_per_referral:v})}).then(function(r){cm(r.ok?"حُفظت ✓":"فشل")})};
 $("kmf").onchange=lm;$("kmr").onclick=lm;
