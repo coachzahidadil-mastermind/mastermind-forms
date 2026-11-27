@@ -236,6 +236,7 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
       <div class="card"><h3>نقاطي | Mes points</h3><p style="margin:0"><b id="mbpt" style="font-size:30px;color:var(--gold)"></b></p><p id="mbrs"></p><div id="mbrl"></div></div>
       <h2>المكتبة | Bibliothèque</h2><div id="mblib"></div>
       <h2>المحاضرات والفيديوهات | Médias</h2><div id="mbmed"></div>
+      <h2>الشواهد والديبلومات | Certificats</h2><div id="mbcert"></div>
     </div>
     <div class="row"><button class="btn alt" id="mblo">خروج | Déconnexion</button></div>
   </div>
@@ -274,7 +275,7 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
     </details>
     <details class="card"><summary>مكتبة الأعضاء (الكراسة والكتب)</summary>
     <label for="klt">العنوان</label><input id="klt"><label for="kld">الوصف (اختياري)</label><input id="kld">
-    <label for="klk">النوع</label><select id="klk"><option value="workbook">كراسة الزبون</option><option value="book">كتاب</option><option value="audio">محاضرة صوتية</option><option value="video">فيديو</option><option value="other">ملف آخر</option></select>
+    <label for="klk">النوع</label><select id="klk"><option value="workbook">كراسة الزبون</option><option value="book">كتاب</option><option value="audio">محاضرة صوتية</option><option value="video">فيديو</option><option value="certificate">شهادة / ديبلوم (للأعضاء فقط)</option><option value="other">ملف آخر</option></select>
     <label for="klf">الملف (PDF أو EPUB أو DOCX أو MP3 أو M4A أو MP4، حتى 50MB)</label><input id="klf" type="file" accept=".pdf,.epub,.docx,.mp3,.m4a,.mp4,.webm,image/jpeg,image/png,audio/*,video/mp4,video/webm">
     <label for="klx">أو رابط فيديو (يوتيوب «غير مدرج» أو Vimeo) بدل رفع ملف</label><input id="klx" type="url" placeholder="https://">
     <div class="row"><button class="btn" id="klu">إضافة</button></div><div id="kll" style="margin-top:10px"></div>
@@ -334,8 +335,8 @@ function rx(){var i=$("p").selectedIndex-1;$("ex").innerHTML=i<0?"":EX[i].map(fu
 $("p").onchange=rx;
 function exs(){var s="";document.querySelectorAll(".xq").forEach(function(e){if(e.value.trim())s+="\n"+e.dataset.q+" "+e.value});return s}
 var B="https://coachzahidadil-mastermind.github.io/mastermind-forms/";
-var F=[["التعريف بالأكاديمية","التعريف العام بالأكاديمية ومنهجيتها وخدماتها وفلسفتها.","#intro"],["التسجيل والاستقبال","استمارة التعارف الأولي لاستقبال طلبات العملاء والتعرف على احتياجاتهم وتحديد مسار المواكبة المناسب.","pro.html"],["الملف المهني للمدرب","التعريف بالمدرب زهيد عادل، مؤسس MASTERMIND ACADEMY، ومسيرته المهنية ومنهجيته.","coach.html"],["Paradigm Shift 2.0","برنامج التحول الذهني وإعادة بناء المعتقدات والأنماط الفكرية والسلوكية.","paradigm.html"],["Zawaj","خدمة التوجيه والمواكبة في العلاقات الزوجية والخلافات الأسرية.","zawaj.html"],["Ruqiah","خدمة الرقية الشرعية والتوجيه الروحي.","ruqiah.html"],["Soutien","برنامج الدعم والمواكبة بعد الفقد، عبر 8 جلسات، مدة كل جلسة 75 دقيقة.","Soutien.html"],["Network","برنامج التسويق الشبكي والتطوير في مجال بناء العلاقات المهنية والشبكات.","Network.html"]];
-$("forms").innerHTML=F.map(function(x){return '<div class="card"><h3>'+x[0]+'</h3><p>'+x[1]+'</p>'+(x[2]==="#intro"?'<a class="btn" href="#intro">اقرأ التعريف</a>':'<a class="btn" href="'+B+x[2]+'" target="_blank" rel="noopener">فتح الاستمارة</a>')+'</div>'}).join("");
+var F=[["التعريف بالأكاديمية","التعريف العام بالأكاديمية ومنهجيتها وخدماتها وفلسفتها.","#intro"],["التسجيل والاستقبال","استمارة التعارف الأولي لاستقبال طلبات العملاء والتعرف على احتياجاتهم وتحديد مسار المواكبة المناسب.","pro.html"],["الملف المهني للمدرب","التعريف بالمدرب زهيد عادل ومنهجيته ومجالات عمله.","#about"],["Paradigm Shift 2.0","برنامج التحول الذهني وإعادة بناء المعتقدات والأنماط الفكرية والسلوكية.","paradigm.html"],["Zawaj","خدمة التوجيه والمواكبة في العلاقات الزوجية والخلافات الأسرية.","zawaj.html"],["Ruqiah","خدمة الرقية الشرعية والتوجيه الروحي.","ruqiah.html"],["Soutien","برنامج الدعم والمواكبة بعد الفقد، عبر 8 جلسات، مدة كل جلسة 75 دقيقة.","Soutien.html"],["Network","برنامج التسويق الشبكي والتطوير في مجال بناء العلاقات المهنية والشبكات.","Network.html"]];
+$("forms").innerHTML=F.map(function(x){return '<div class="card"><h3>'+x[0]+'</h3><p>'+x[1]+'</p>'+(x[2].charAt(0)==="#"?'<a class="btn" href="'+x[2]+'">اقرأ التعريف</a>':'<a class="btn" href="'+B+x[2]+'" target="_blank" rel="noopener">فتح الاستمارة</a>')+'</div>'}).join("");
 var SB="https://eerwbqkdhujuehwrbbbg.supabase.co",KEY="sb_publishable_j4eacf86PVpf9CHcmPLXMg_LTQjW3fQ";
 var ST={awaiting_transfer:"في انتظار التحويل | En attente du virement",proof_sent:"تم إرسال إثبات الدفع | Preuve envoyée",under_review:"قيد التحقق | En vérification",confirmed:"تم تأكيد الدفع | Paiement confirmé",rejected:"مرفوض | Refusé"};
 function api(p,o,t){o=o||{};o.headers=Object.assign({apikey:KEY,"Content-Type":"application/json"},o.headers||{});if(t)o.headers.Authorization="Bearer "+t;return fetch(SB+p,o)}
@@ -447,14 +448,17 @@ $("mbcp").onclick=function(){try{navigator.clipboard.writeText(link);mm("تم ا
 $("mbwa").href="https://wa.me/?text="+encodeURIComponent("انضم إلى أكاديمية ماستر مايند عبر رابطي: "+link);
 $("mbpt").textContent=s.points;$("mbrs").textContent="الإحالات: "+s.referrals_total+" (مفعّل: "+s.referrals_active+") | Parrainés : "+s.referrals_total;
 ra("my_referrals",{},MT).then(function(L){var b=$("mbrl");b.innerHTML="";L.forEach(function(x){b.appendChild(el("p",x.first_name+" — "+(x.status==="active"?"مفعّل":"قيد المراجعة")))})});
-api("/rest/v1/library_items?select=id,title,description,kind,file_path,external_url&order=created_at.desc",{},MT).then(function(r){return r.json()}).then(function(L){var d=$("mblib"),m=$("mbmed");d.innerHTML="";m.innerHTML="";var nd=0,nm=0;
-L.forEach(function(x){var med=x.kind==="audio"||x.kind==="video";var c=el("div",null,"card");c.appendChild(el("h3",({workbook:"كراسة | ",book:"كتاب | ",audio:"صوتية | ",video:"فيديو | ",other:""})[x.kind]+x.title));if(x.description)c.appendChild(el("p",x.description));
-var box=el("div");c.appendChild(box);var bt=el("button",med?"تشغيل | Lire":"تحميل | Télécharger","btn");bt.onclick=function(){mopen(x,box,bt)};c.appendChild(bt);
-if(med){m.appendChild(c);nm++}else{d.appendChild(c);nd++}});
-if(!nd)d.appendChild(el("p","لا توجد ملفات بعد | Aucun fichier"));if(!nm)m.appendChild(el("p","لا توجد وسائط بعد | Aucun média"))})}
+api("/rest/v1/library_items?select=id,title,description,kind,file_path,external_url&order=created_at.desc",{},MT).then(function(r){return r.json()}).then(function(L){var d=$("mblib"),m=$("mbmed"),ce=$("mbcert");d.innerHTML="";m.innerHTML="";ce.innerHTML="";var nd=0,nm=0,nc=0;
+L.forEach(function(x){var med=x.kind==="audio"||x.kind==="video";var c=el("div",null,"card");c.appendChild(el("h3",({workbook:"كراسة | ",book:"كتاب | ",audio:"صوتية | ",video:"فيديو | ",certificate:"شهادة | ",other:""})[x.kind]+x.title));if(x.description)c.appendChild(el("p",x.description));
+var box=el("div");c.appendChild(box);var bt=el("button",med?"تشغيل | Lire":x.kind==="certificate"?"عرض | Voir":"تحميل | Télécharger","btn");bt.onclick=function(){mopen(x,box,bt)};c.appendChild(bt);
+if(x.kind==="certificate"){ce.appendChild(c);nc++}else if(med){m.appendChild(c);nm++}else{d.appendChild(c);nd++}});
+if(!nd)d.appendChild(el("p","لا توجد ملفات بعد | Aucun fichier"));if(!nm)m.appendChild(el("p","لا توجد وسائط بعد | Aucun média"));if(!nc)ce.appendChild(el("p","لا توجد شواهد بعد | Aucun certificat"))})}
 function yt(u){var m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);if(m)return"https://www.youtube-nocookie.com/embed/"+m[1];m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);return m?"https://player.vimeo.com/video/"+m[1]:null}
 function mopen(x,box,bt){
 if(x.external_url){var e=yt(x.external_url);if(e){box.innerHTML="";var f=document.createElement("iframe");f.src=e;f.allowFullscreen=true;f.setAttribute("allow","autoplay; fullscreen; picture-in-picture");f.style.cssText="width:100%;aspect-ratio:16/9;border:0;border-radius:10px;margin-top:8px";box.appendChild(f);bt.style.display="none"}else window.open(x.external_url,"_blank","noopener");return}
+if(x.kind==="certificate"){var im=/\.(jpe?g|png|webp)$/i.test(x.file_path||"");var w2=im?null:window.open("","_blank");
+api("/storage/v1/object/sign/library/"+x.file_path,{method:"POST",body:JSON.stringify({expiresIn:3600})},MT).then(function(r){return r.json()}).then(function(j){if(!j.signedURL)throw 0;var u=SB+"/storage/v1"+j.signedURL;
+if(!im){w2.location=u;return}box.innerHTML="";var g=document.createElement("img");g.src=u;g.alt="";g.draggable=false;g.oncontextmenu=function(){return false};g.style.cssText="width:100%;border-radius:10px;margin-top:8px;display:block";box.appendChild(g);bt.style.display="none"}).catch(function(){if(w2)w2.close();mm("تعذر العرض | Échec")});return}
 var med=x.kind==="audio"||x.kind==="video";var w=med?null:window.open("","_blank");
 api("/storage/v1/object/sign/library/"+x.file_path,{method:"POST",body:JSON.stringify({expiresIn:med?7200:300})},MT).then(function(r){return r.json()}).then(function(j){if(!j.signedURL)throw 0;var u=SB+"/storage/v1"+j.signedURL;
 if(!med){w.location=u;return}
