@@ -99,7 +99,7 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
   <div class="card"><h3>التطوير الذاتي</h3><p>جلسات وبرامج ومرافقة فردية.</p></div>
   <div class="card"><h3>التسويق الشبكي بأخلاق وقيم</h3><p>تكوين عملي في بناء الأعمال والعلاقات.</p></div>
   <div class="card"><h3>تحليل الكتب</h3><p>تحويل أفكار الكتب إلى تطبيق في الحياة.</p></div>
-  <div class="row"><a class="btn" href="#register">احجز مكانك</a><a class="btn alt" href="#contact">تواصل مباشرة</a></div>
+  <div class="row"><a class="btn" href="#register">احجز مكانك</a><a class="btn alt" href="#contact">تواصل مباشرة</a><a class="btn alt" target="_blank" rel="noopener" href="https://wa.me/212665112789?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%AC%D9%88%20%D8%A7%D9%84%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%20%D8%B9%D9%84%D9%89%20%D8%B4%D9%88%D8%A7%D9%87%D8%AF%20%D9%88%D8%AF%D9%8A%D8%A8%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D8%AF%D8%B1%D8%A8%20%D8%B2%D9%87%D9%8A%D8%AF%20%D8%B9%D8%A7%D8%AF%D9%84.">اطلب شواهد المدرب</a></div>
 </section>
 
 <section class="view" id="v-register">
@@ -197,7 +197,9 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
 <section class="view" id="v-blog">
   <h1>المدونة | Blog</h1>
   <p>مقالات من المدرب زهيد عادل في الوعي والتطوير الذاتي.</p>
-  <div id="bl"></div>
+  <div id="bc"><input id="bq" type="search" placeholder="ابحث في المقالات | Rechercher" autocomplete="off"><select id="bk2" style="margin-top:8px"><option value="">كل التصنيفات | Toutes</option></select></div>
+  <div id="bl" style="margin-top:12px"></div>
+  <div class="row" id="bmr" style="display:none"><button class="btn alt" id="bm">عرض المزيد | Voir plus</button></div>
   <div id="ba" style="display:none">
     <button class="btn alt" id="bb">رجوع | Retour</button>
     <div id="bco" style="margin-top:12px"></div><h1 id="bat" style="margin-top:14px"></h1><p id="bam"></p><div id="bab"></div>
@@ -236,7 +238,7 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
       <div class="card"><h3>نقاطي | Mes points</h3><p style="margin:0"><b id="mbpt" style="font-size:30px;color:var(--gold)"></b></p><p id="mbrs"></p><div id="mbrl"></div></div>
       <h2>المكتبة | Bibliothèque</h2><div id="mblib"></div>
       <h2>المحاضرات والفيديوهات | Médias</h2><div id="mbmed"></div>
-      <h2>الشواهد والديبلومات | Certificats</h2><div id="mbcert"></div>
+      <h2 id="mbcerth" style="display:none">الشواهد والديبلومات | Certificats</h2><div id="mbcert"></div>
     </div>
     <div class="row"><button class="btn alt" id="mblo">خروج | Déconnexion</button></div>
   </div>
@@ -262,10 +264,13 @@ nav{position:fixed;inset:auto 0 0;background:var(--g);display:flex;border-top:3p
     <label for="kat">العنوان</label><input id="kat">
     <label for="kac">التصنيف (مثل: وعي، أسرة، تسويق شبكي)</label><input id="kac">
     <label for="kab">النص (فقرة فارغة بين الفقرات؛ ## قبل العنوان الفرعي؛ &gt; قبل الاقتباس)</label><textarea id="kab" style="min-height:220px"></textarea>
+    <div class="row" style="margin-top:6px"><button class="btn alt" id="kpa" type="button">لصق من الحافظة</button><button class="btn alt" id="kpv0" type="button">معاينة</button></div>
+    <div id="kpv" style="display:none;margin-top:10px"></div>
     <label for="kaf">صورة الغلاف (اختيارية، تُصغَّر تلقائياً)</label><input id="kaf" type="file" accept="image/jpeg,image/png,image/webp">
     <label style="display:flex;gap:8px;align-items:center;font-weight:400"><input id="kar" type="checkbox" style="width:auto"> إزالة الغلاف الحالي</label>
     <label for="kap">الحالة</label><select id="kap"><option value="1">منشور</option><option value="0">مسودة</option></select>
     <div class="row"><button class="btn" id="kas">حفظ المقال</button><button class="btn alt" id="kan">مقال جديد</button></div>
+    <div class="row"><button class="btn alt" id="kth">إنشاء مصغّرات للمقالات القديمة</button></div>
     <div id="kal" style="margin-top:10px"></div>
     </details>
     <details class="card" style="margin-top:14px"><summary>الأعضاء ونقاط الإحالة</summary>
@@ -372,19 +377,27 @@ document.querySelectorAll("[data-sg]").forEach(function(b){b.onclick=function(){
 /* ---- المدونة ---- */
 function cov(p){return SB+"/storage/v1/object/public/blog/"+p}
 function cimg(p,alt){var i=document.createElement("img");i.src=cov(p);i.alt=alt||"";i.loading="lazy";i.style.cssText="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block;margin-bottom:10px";return i}
-function shrink(f){return new Promise(function(ok,no){var u=URL.createObjectURL(f),im=new Image();im.onload=function(){var r=Math.min(1,1280/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(function(b){b?ok(b):no()},"image/jpeg",.82)};im.onerror=no;im.src=u})}
+function shrink(f,mx,q){mx=mx||1280;q=q||.82;return new Promise(function(ok,no){var u=URL.createObjectURL(f),im=new Image();im.onload=function(){var r=Math.min(1,mx/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(function(b){b?ok(b):no()},"image/jpeg",q)};im.onerror=no;im.src=u})}
 var AR=null;
 function dt(x){var d=new Date(x);return("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear()}
-function loadBlog(){api("/rest/v1/articles?select=id,title,category,excerpt,published_at,cover_path&is_published=eq.true&order=published_at.desc&limit=30").then(function(r){return r.json()}).then(function(L){if(!Array.isArray(L))throw 0;var b=$("bl");b.innerHTML="";
-if(!L.length)b.appendChild(el("p","لا توجد مقالات بعد | Aucun article"));
-L.forEach(function(x){var c=el("div",null,"card");if(x.cover_path)c.appendChild(cimg(x.cover_path,x.title));if(x.category)c.appendChild(el("p",x.category,"")).style.cssText="margin:0;color:var(--gold);font-weight:800";c.appendChild(el("h3",x.title));c.appendChild(el("p",(x.excerpt||"")+"…"));c.appendChild(el("p",dt(x.published_at))).style.fontSize="13px";var bt=el("button","اقرأ | Lire","btn");bt.onclick=function(){openA(x.id)};c.appendChild(bt);b.appendChild(c)});
-if(L[0]){$("hlc").style.display="block";$("hlt").textContent=L[0].title;var hi=$("hli");hi.innerHTML="";if(L[0].cover_path)hi.appendChild(cimg(L[0].cover_path,L[0].title));$("hlx").textContent=(L[0].excerpt||"")+"…";$("hlb").onclick=function(){openA(L[0].id)}}}).catch(function(){$("bl").textContent="تعذر تحميل المقالات | Chargement impossible"})}
-function openA(id){api("/rest/v1/articles?id=eq."+encodeURIComponent(id)+"&is_published=eq.true&select=id,title,category,body,published_at,cover_path").then(function(r){return r.json()}).then(function(a){var x=a&&a[0];if(!x)return;AR=x;$("bl").style.display="none";$("ba").style.display="block";$("bat").textContent=x.title;var bo=$("bco");bo.innerHTML="";if(x.cover_path)bo.appendChild(cimg(x.cover_path,x.title));
+var BS={q:"",cat:"",off:0,n:10,more:false};
+function bfilter(){var f="&is_published=eq.true";if(BS.cat)f+="&category=eq."+encodeURIComponent(BS.cat);var q=BS.q.replace(/[,()*%\\:"]/g,"").trim();if(q){var e=encodeURIComponent(q);f+="&or=(title.ilike.*"+e+"*,body.ilike.*"+e+"*)"}return f}
+function bcard(x){var c=el("div",null,"card"),im=x.thumb_path||x.cover_path;if(im)c.appendChild(cimg(im,x.title));if(x.category){var k=el("p",x.category);k.style.cssText="margin:0;color:var(--gold);font-weight:800";c.appendChild(k)}
+c.appendChild(el("h3",x.title));c.appendChild(el("p",(x.excerpt||"")+"…"));var d=el("p",dt(x.published_at));d.style.fontSize="13px";c.appendChild(d);var bt=el("button","اقرأ | Lire","btn");bt.onclick=function(){openA(x.id)};c.appendChild(bt);return c}
+function loadHome(){api("/rest/v1/articles?select=id,title,excerpt,cover_path,thumb_path&is_published=eq.true&order=published_at.desc&limit=1").then(function(r){return r.json()}).then(function(L){var x=L&&L[0];if(!x)return;$("hlc").style.display="block";$("hlt").textContent=x.title;$("hlx").textContent=(x.excerpt||"")+"…";var hi=$("hli");hi.innerHTML="";var im=x.thumb_path||x.cover_path;if(im)hi.appendChild(cimg(im,x.title));$("hlb").onclick=function(){openA(x.id)}}).catch(function(){})}
+function loadCats(){api("/rest/v1/articles?select=category&is_published=eq.true&category=not.is.null&limit=1000").then(function(r){return r.json()}).then(function(L){if(!Array.isArray(L))return;var u={};L.forEach(function(x){if(x.category)u[x.category]=1});var sel=$("bk2"),cur=sel.value;sel.innerHTML='<option value="">كل التصنيفات | Toutes</option>';Object.keys(u).sort().forEach(function(k){var o=document.createElement("option");o.value=k;o.textContent=k;sel.appendChild(o)});sel.value=cur}).catch(function(){})}
+function loadBlog(more){var b=$("bl");if(!more){BS.off=0;b.innerHTML="";if(!BS.q&&!BS.cat){loadHome();loadCats()}}
+api("/rest/v1/articles?select=id,title,category,excerpt,published_at,cover_path,thumb_path"+bfilter()+"&order=published_at.desc&limit="+BS.n+"&offset="+BS.off).then(function(r){return r.json()}).then(function(L){if(!Array.isArray(L))throw 0;
+if(!more&&!L.length)b.appendChild(el("p","لا توجد مقالات مطابقة | Aucun résultat"));L.forEach(function(x){b.appendChild(bcard(x))});BS.off+=L.length;BS.more=L.length===BS.n;$("bmr").style.display=BS.more?"flex":"none"}).catch(function(){b.textContent="تعذر تحميل المقالات | Chargement impossible"})}
+var bt0;$("bq").oninput=function(){clearTimeout(bt0);bt0=setTimeout(function(){BS.q=$("bq").value.trim();loadBlog()},350)};
+$("bk2").onchange=function(){BS.cat=$("bk2").value;loadBlog()};
+$("bm").onclick=function(){loadBlog(true)};
+function openA(id){api("/rest/v1/articles?id=eq."+encodeURIComponent(id)+"&is_published=eq.true&select=id,title,category,body,published_at,cover_path").then(function(r){return r.json()}).then(function(a){var x=a&&a[0];if(!x)return;AR=x;$("bl").style.display="none";$("bc").style.display="none";$("bmr").style.display="none";$("ba").style.display="block";$("bat").textContent=x.title;var bo=$("bco");bo.innerHTML="";if(x.cover_path)bo.appendChild(cimg(x.cover_path,x.title));
 var w=x.body.trim().split(/\s+/).length;$("bam").textContent=(x.category?x.category+" · ":"")+dt(x.published_at)+" · "+Math.max(1,Math.round(w/180))+" دقيقة قراءة | min";
 var b=$("bab");b.innerHTML="";x.body.split(/\n{2,}/).forEach(function(par){par=par.trim();if(!par)return;var e;
 if(par.indexOf("## ")===0)e=el("h2",par.slice(3));else if(par.indexOf("> ")===0){e=el("div",null,"quote");e.appendChild(el("p",par.slice(2)))}else{e=el("p",par);e.style.color="var(--ink)";e.style.whiteSpace="pre-line"}b.appendChild(e)});
 location.hash="blog";window.scrollTo(0,0)}).catch(function(){})}
-$("bb").onclick=function(){$("ba").style.display="none";$("bl").style.display="block";window.scrollTo(0,0)};
+$("bb").onclick=function(){$("ba").style.display="none";$("bl").style.display="block";$("bc").style.display="block";$("bmr").style.display=BS.more?"flex":"none";window.scrollTo(0,0)};
 function alink(){return SU+"?a="+AR.id+"#blog"}
 $("bsw").onclick=function(){if(AR)window.open("https://wa.me/?text="+encodeURIComponent(AR.title+"\n"+alink()),"_blank")};
 $("bsc").onclick=function(){if(!AR)return;try{navigator.clipboard.writeText(alink())}catch(e){}};
@@ -392,18 +405,34 @@ $("bqa").onclick=function(){if(AR)window.open("https://wa.me/212665112789?text="
 loadBlog();
 try{var qa=new URLSearchParams(location.search).get("a");if(qa)openA(qa)}catch(e){}
 /* ---- كتابة المقالات (المدرب) ---- */
-var AID=null,AC=null;
-function aclear(){AID=null;AC=null;$("kaf").value="";$("kar").checked=false;$("kat").value="";$("kac").value="";$("kab").value="";$("kap").value="1"}
-function la(){ca("/rest/v1/articles?select=id,title,is_published,published_at,created_at,cover_path&order=created_at.desc&limit=50").then(function(r){return r.json()}).then(function(L){var b=$("kal");b.innerHTML="";L.forEach(function(x){var c=el("div",null,"card");c.appendChild(el("h3",x.title));c.appendChild(el("p",(x.is_published?"منشور":"مسودة")+" · "+dt(x.created_at)));var r=el("div",null,"row");
-var e=el("button","تعديل","btn alt");e.onclick=function(){ca("/rest/v1/articles?id=eq."+x.id+"&select=*").then(function(q){return q.json()}).then(function(a){var y=a[0];AID=y.id;AC=y.cover_path||null;$("kat").value=y.title;$("kac").value=y.category||"";$("kab").value=y.body;$("kap").value=y.is_published?"1":"0";window.scrollTo(0,0);cm("جرى تحميل المقال للتعديل")})};r.appendChild(e);
+var AID=null,AC=null,AT=null,CL=30;
+function aclear(){AID=null;AC=null;AT=null;$("kaf").value="";$("kar").checked=false;$("kat").value="";$("kac").value="";$("kab").value="";$("kap").value="1"}
+function la(){ca("/rest/v1/articles?select=id,title,is_published,published_at,created_at,cover_path,thumb_path&order=created_at.desc&limit="+CL).then(function(r){return r.json()}).then(function(L){var b=$("kal");b.innerHTML="";L.forEach(function(x){var c=el("div",null,"card");c.appendChild(el("h3",x.title));c.appendChild(el("p",(x.is_published?"منشور":"مسودة")+" · "+dt(x.created_at)));var r=el("div",null,"row");
+var e=el("button","تعديل","btn alt");e.onclick=function(){ca("/rest/v1/articles?id=eq."+x.id+"&select=*").then(function(q){return q.json()}).then(function(a){var y=a[0];AID=y.id;AC=y.cover_path||null;AT=y.thumb_path||null;$("kat").value=y.title;$("kac").value=y.category||"";$("kab").value=y.body;$("kap").value=y.is_published?"1":"0";window.scrollTo(0,0);cm("جرى تحميل المقال للتعديل")})};r.appendChild(e);
 var t=el("button",x.is_published?"إلغاء النشر":"نشر","btn alt");t.onclick=function(){ca("/rest/v1/articles?id=eq."+x.id,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({is_published:!x.is_published})}).then(function(){la();loadBlog()})};r.appendChild(t);
-var d=el("button","حذف","btn alt");d.onclick=function(){if(confirm("حذف المقال نهائياً؟")){if(x.cover_path)ca("/storage/v1/object/blog/"+x.cover_path,{method:"DELETE"});ca("/rest/v1/articles?id=eq."+x.id,{method:"DELETE"}).then(function(){la();loadBlog()})}};r.appendChild(d);c.appendChild(r);b.appendChild(c)})})}
-$("kas").onclick=function(){var t=$("kat").value.trim(),bd=$("kab").value.trim(),f=$("kaf").files[0],rm=$("kar").checked,old=AC;if(t.length<3||!bd){cm("أدخل العنوان والنص");return}
-function put(cp){var o={title:t,category:$("kac").value.trim()||null,body:bd,is_published:$("kap").value==="1"};if(cp!==undefined)o.cover_path=cp;
-return ca(AID?"/rest/v1/articles?id=eq."+AID:"/rest/v1/articles",{method:AID?"PATCH":"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify(o)}).then(function(r){if(!r.ok)throw 0;if(old&&(f||rm))ca("/storage/v1/object/blog/"+old,{method:"DELETE"});cm("تم حفظ المقال ✓");aclear();la();loadBlog()})}
-if(f){cm("جار معالجة الصورة...");shrink(f).then(function(b){var path=Date.now()+"-"+Math.floor(Math.random()*1e6)+".jpg";return ca("/storage/v1/object/blog/"+path,{method:"POST",headers:{"Content-Type":"image/jpeg"},body:b}).then(function(r){if(!r.ok)throw 0;return put(path)})}).catch(function(){cm("فشل رفع الصورة أو الحفظ")})}
+var d=el("button","حذف","btn alt");d.onclick=function(){if(confirm("حذف المقال نهائياً؟")){if(x.cover_path)ca("/storage/v1/object/blog/"+x.cover_path,{method:"DELETE"});if(x.thumb_path)ca("/storage/v1/object/blog/"+x.thumb_path,{method:"DELETE"});ca("/rest/v1/articles?id=eq."+x.id,{method:"DELETE"}).then(function(){la();loadBlog()})}};r.appendChild(d);c.appendChild(r);b.appendChild(c)});if(L.length>=CL){var mb=el("button","عرض المزيد","btn alt");mb.onclick=function(){CL+=30;la()};b.appendChild(mb)}})}
+$("kas").onclick=function(){var t=$("kat").value.trim(),bd=$("kab").value.trim(),f=$("kaf").files[0],rm=$("kar").checked,oc=AC,ot=AT;if(t.length<3||!bd){cm("أدخل العنوان والنص");return}
+function put(cp,tp){var o={title:t,category:$("kac").value.trim()||null,body:bd,is_published:$("kap").value==="1"};if(cp!==undefined){o.cover_path=cp;o.thumb_path=tp===undefined?null:tp}
+return ca(AID?"/rest/v1/articles?id=eq."+AID:"/rest/v1/articles",{method:AID?"PATCH":"POST",headers:{Prefer:"return=minimal"},body:JSON.stringify(o)}).then(function(r){if(!r.ok)throw 0;if(f||rm){if(oc)ca("/storage/v1/object/blog/"+oc,{method:"DELETE"});if(ot)ca("/storage/v1/object/blog/"+ot,{method:"DELETE"})}cm("تم حفظ المقال ✓");aclear();la();loadBlog()})}
+function up(pth,bl){return ca("/storage/v1/object/blog/"+pth,{method:"POST",headers:{"Content-Type":"image/jpeg"},body:bl}).then(function(r){if(!r.ok)throw 0})}
+if(f){cm("جار معالجة الصورة...");Promise.all([shrink(f,1280,.82),shrink(f,480,.78)]).then(function(bs){var id0=Date.now()+"-"+Math.floor(Math.random()*1e6),pc=id0+".jpg",pt=id0+"-t.jpg";return up(pc,bs[0]).then(function(){return up(pt,bs[1])}).then(function(){return put(pc,pt)})}).catch(function(){cm("فشل رفع الصورة أو الحفظ")})}
 else put(rm?null:undefined).catch(function(){cm("فشل الحفظ")})};
+$("kth").onclick=function(){cm("جار إنشاء المصغّرات...");ca("/rest/v1/articles?select=id,cover_path&cover_path=not.is.null&thumb_path=is.null").then(function(r){return r.json()}).then(function(L){if(!L.length){cm("كل المقالات لها مصغّرات ✓");return}var n=0;
+return L.reduce(function(pr,x){return pr.then(function(){return fetch(cov(x.cover_path)).then(function(r){return r.blob()}).then(function(bl){return shrink(bl,480,.78)}).then(function(tb){var tp=x.cover_path.replace(/\.jpg$/,"")+"-t.jpg";return up(tp,tb).then(function(){return ca("/rest/v1/articles?id=eq."+x.id,{method:"PATCH",headers:{Prefer:"return=minimal"},body:JSON.stringify({thumb_path:tp})})}).then(function(){n++})})})},Promise.resolve()).then(function(){cm("تم إنشاء "+n+" مصغّرة ✓");loadBlog()})}).catch(function(){cm("فشل إنشاء المصغّرات")})};
 $("kan").onclick=function(){aclear();cm("")};
+/* ---- لصق ومعاينة المقال (المدرب) ---- */
+function arender(b,t){b.innerHTML="";t.split(/\n{2,}/).forEach(function(par){par=par.trim();if(!par)return;var e;
+if(par.indexOf("## ")===0)e=el("h2",par.slice(3));else if(par.indexOf("> ")===0){e=el("div",null,"quote");e.appendChild(el("p",par.slice(2)))}else{e=el("p",par);e.style.color="var(--ink)";e.style.whiteSpace="pre-line"}b.appendChild(e)})}
+$("kpa").onclick=function(){if(!navigator.clipboard||!navigator.clipboard.readText){cm("المتصفح لا يسمح باللصق التلقائي، الصق يدوياً");return}
+navigator.clipboard.readText().then(function(t){if(!t||!t.trim()){cm("الحافظة فارغة");return}
+if($("kab").value.trim()&&!confirm("استبدال النص الحالي بالنص المنسوخ؟"))return;$("kab").value=t.replace(/\r\n/g,"\n").trim();cm("تم اللصق ✓")}).catch(function(){cm("لم يُسمح بقراءة الحافظة، الصق يدوياً")})};
+$("kpv0").onclick=function(){var box=$("kpv"),t=$("kat").value.trim(),bd=$("kab").value.trim(),f=$("kaf").files[0];if(!t||!bd){cm("اكتب العنوان والنص أولاً");return}
+box.innerHTML="";var c=el("div",null,"card");var lb=el("p","معاينة كما سيراها القارئ");lb.style.cssText="margin:0 0 8px;color:var(--gold);font-weight:800";c.appendChild(lb);
+var cs="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block;margin-bottom:10px";
+if(f){var im=document.createElement("img");im.src=URL.createObjectURL(f);im.style.cssText=cs;c.appendChild(im)}else if(AC&&!$("kar").checked){c.appendChild(cimg(AC,t))}
+if($("kac").value.trim()){var k=el("p",$("kac").value.trim());k.style.cssText="margin:0;color:var(--gold);font-weight:800";c.appendChild(k)}
+c.appendChild(el("h1",t));var w=bd.split(/\s+/).length;c.appendChild(el("p",dt(new Date())+" · "+Math.max(1,Math.round(w/180))+" دقيقة قراءة · الحالة: "+($("kap").value==="1"?"منشور":"مسودة")));
+var body=el("div");arender(body,bd);c.appendChild(body);var x=el("button","إغلاق المعاينة","btn alt");x.onclick=function(){box.style.display="none";box.innerHTML=""};c.appendChild(x);box.appendChild(c);box.style.display="block";box.scrollIntoView({behavior:"smooth",block:"start"})};
 /* ---- كلمة السر + أدوات المدرب ---- */
 var RT=null;
 function recov(email,cb){if(!email){cb("أدخل بريدك أولاً | Saisissez votre e-mail");return}api("/auth/v1/recover?redirect_to="+encodeURIComponent(SU),{method:"POST",body:JSON.stringify({email:email})}).then(function(){cb("إن كان البريد مسجلاً ستصلك رسالة لإعادة تعيين كلمة السر. | Si l’e-mail existe, un lien vous sera envoyé.")}).catch(function(){cb("تعذر الإرسال | Échec")})}
@@ -452,7 +481,7 @@ api("/rest/v1/library_items?select=id,title,description,kind,file_path,external_
 L.forEach(function(x){var med=x.kind==="audio"||x.kind==="video";var c=el("div",null,"card");c.appendChild(el("h3",({workbook:"كراسة | ",book:"كتاب | ",audio:"صوتية | ",video:"فيديو | ",certificate:"شهادة | ",other:""})[x.kind]+x.title));if(x.description)c.appendChild(el("p",x.description));
 var box=el("div");c.appendChild(box);var bt=el("button",med?"تشغيل | Lire":x.kind==="certificate"?"عرض | Voir":"تحميل | Télécharger","btn");bt.onclick=function(){mopen(x,box,bt)};c.appendChild(bt);
 if(x.kind==="certificate"){ce.appendChild(c);nc++}else if(med){m.appendChild(c);nm++}else{d.appendChild(c);nd++}});
-if(!nd)d.appendChild(el("p","لا توجد ملفات بعد | Aucun fichier"));if(!nm)m.appendChild(el("p","لا توجد وسائط بعد | Aucun média"));if(!nc)ce.appendChild(el("p","لا توجد شواهد بعد | Aucun certificat"))})}
+if(!nd)d.appendChild(el("p","لا توجد ملفات بعد | Aucun fichier"));if(!nm)m.appendChild(el("p","لا توجد وسائط بعد | Aucun média"));$("mbcerth").style.display=nc?"block":"none"})}
 function yt(u){var m=u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);if(m)return"https://www.youtube-nocookie.com/embed/"+m[1];m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);return m?"https://player.vimeo.com/video/"+m[1]:null}
 function mopen(x,box,bt){
 if(x.external_url){var e=yt(x.external_url);if(e){box.innerHTML="";var f=document.createElement("iframe");f.src=e;f.allowFullscreen=true;f.setAttribute("allow","autoplay; fullscreen; picture-in-picture");f.style.cssText="width:100%;aspect-ratio:16/9;border:0;border-radius:10px;margin-top:8px";box.appendChild(f);bt.style.display="none"}else window.open(x.external_url,"_blank","noopener");return}
